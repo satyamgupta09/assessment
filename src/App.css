@@ -1,0 +1,4 @@
+.rs-modal-wrapper,
+.rs-modal-backdrop {
+  z-index: 9999 !important;
+}
