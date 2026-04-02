@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { CircularProgress } from "@mui/material";
+import { Box, CircularProgress } from "@mui/material";
 
 export default function ProductDetails() {
   const { id } = useParams();
@@ -22,7 +22,16 @@ export default function ProductDetails() {
       });
   }, [id]);
 
-  if (!data) return <CircularProgress />;
+  if (!data) return (
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        height="100vh"
+      >
+        <CircularProgress />
+      </Box>
+    );
 
   return (
     <div style={{ padding: "20px" }}>

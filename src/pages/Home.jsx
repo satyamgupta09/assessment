@@ -53,19 +53,6 @@ export default function Home() {
     { field: "price", headerName: "Price", flex: 1 },
   ];
 
-  // for laoder
-  if (loading)
-    return (
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        height="100vh"
-      >
-        <CircularProgress />
-      </Box>
-    );
-
   // for error
   if (error)
     return (
@@ -73,59 +60,6 @@ export default function Home() {
         <p>{error}</p>
       </Box>
     );
-
-  // return (
-  //   <div style={{ border: "1px solid #998f8f", marginTop: "10px" }}>
-  //     <Grid container>
-  //       <Grid item xs={3}>
-  //         {/* for search filter */}
-  //         <TextField
-  //           label="Search"
-  //           value={search}
-  //           onChange={(e) => setSearch(e.target.value)}
-  //           sx={{ mb: 2, width: 300 }}
-  //         />
-  //         </Grid>
-  //         <Grid item xs={4}>
-
-  //         {/* for category dropdown */}
-  //         <TextField
-  //           select
-  //           label="Category"
-  //           value={category}
-  //           onChange={(e) => setCategory(e.target.value)}
-  //           sx={{ mb: 2, width: 200 }}
-  //         >
-  //           <MenuItem value="">All</MenuItem>
-  //           <MenuItem value="beauty">Beauty</MenuItem>
-  //           <MenuItem value="fragrances">Fragrances</MenuItem>
-  //           <MenuItem value="furniture">Furniture</MenuItem>
-  //           <MenuItem value="groceries">Groceries</MenuItem>
-  //         </TextField>
-  //       </Grid>
-  //       </Grid>
-
-  //       {/* DataGrid */}
-  //       <Grid sx={{ height: 500, width: "100%" }}>
-  //         <DataGrid
-  //         pagination
-  //         paginationMode="server"
-  //         rows={filteredRows}
-  //         columns={columns}
-  //         page={page}
-  //         paginationModel={{ page, pageSize }}
-  //         rowCount={rowCount}
-  //         onPaginationModelChange={(model) => {
-  //            setPage(model.page);
-  //            setPageSize(model.pageSize);
-  //         }}
-  //         pageSizeOptions={[5, 10]}
-  //         onRowClick={(params) => navigate(`/product/${params.id}`)}
-  //         />
-
-  //     </Grid>
-  //   </div>
-  // );
 
   return (
   <div style={{ border: "1px solid #998f8f", marginTop: "10px" }}>
@@ -184,83 +118,3 @@ export default function Home() {
   </div>
 );
 }
-
-// import { useEffect, useState } from "react";
-// import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-// import { Box, MenuItem, TextField, CircularProgress } from "@mui/material";
-// import { useNavigate } from "react-router-dom";
-// import { fetchProducts } from "../services/api";
-
-// export default function Home() {
-//   const [rows, setRows] = useState([]);
-//   const [page, setPage] = useState(0);
-//   const [loading, setLoading] = useState(true);
-//   const [category, setCategory] = useState("");
-//   const [error, setError] = useState(null);
-
-//   const navigate = useNavigate();
-
-//   useEffect(() => {
-//     setLoading(true);
-//     fetchProducts(page + 1)
-//       .then((data) => setRows(data?.products || []))
-//       .catch(() => setError("Error"))
-//       .finally(() => setLoading(false));
-//   }, [page]);
-
-//   const filteredRows = category
-//     ? rows.filter((item) => item.category === category)
-//     : rows;
-
-//   const columns = [
-//     {
-//       field: "image",
-//       headerName: "Image",
-//       width: 100,
-//       renderCell: (params) => (
-//         <img src={params.row.image} width={50} />
-//       ),
-//       sortable: false,
-//     },
-//     { field: "name", headerName: "Name", width: 200 },
-//     { field: "category", headerName: "Category", width: 150 },
-//     { field: "price", headerName: "Price", width: 120, sortable: true },
-//   ];
-
-//   if (loading) return <CircularProgress />;
-//   if (error) return <p>{error}</p>;
-
-//   return (
-//     <Box p={2}>
-//       {/* Category Filter */}
-//       <TextField
-//         select
-//         label="Category"
-//         value={category}
-//         onChange={(e) => setCategory(e.target.value)}
-//         sx={{ mb: 2 }}
-//       >
-//         <MenuItem value="">All</MenuItem>
-//         <MenuItem value="electronics">Electronics</MenuItem>
-//         <MenuItem value="fashion">Fashion</MenuItem>
-//       </TextField>
-
-//       {/* DataGrid */}
-//       <Box sx={{ height: 500 }}>
-//         <DataGrid
-//           rows={filteredRows}
-//           columns={columns}
-//           pagination
-//           pageSizeOptions={[5, 10]}
-//           page={page}
-//           onPageChange={(newPage) => setPage(newPage)}
-//           slots={{ toolbar: GridToolbar }}
-//           slotProps={{ toolbar: { showQuickFilter: true } }}
-//           onRowClick={(params) =>
-//             navigate(`/product/${params.id}`)
-//           }
-//         />
-//       </Box>
-//     </Box>
-//   );
-// }
